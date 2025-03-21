@@ -6,11 +6,8 @@ const Kakaologin = async () => {
 
     const supabase = createClient();
 
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const {} = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
-        options: {
-            redirectTo: 'http://localhost:3000/',
-        },
     })
 };
 
