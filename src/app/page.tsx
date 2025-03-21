@@ -1,5 +1,6 @@
 import { createClient } from '@/utils/supabase/server';
-import {logout} from "@/app/actions";
+import {signOutAction} from "@/actions";
+
 
 export default async function Page() {
     const supabase = await createClient();
@@ -12,7 +13,7 @@ export default async function Page() {
         return (
             <>
                 <h1>{user.email}님 환영합니다.</h1>
-                <form action={logout}>
+                <form action={signOutAction}>
                     <button type="submit">로그아웃</button>
                 </form>
             </>

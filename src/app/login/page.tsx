@@ -1,11 +1,12 @@
-import {login} from "@/app/login/actions";
+
 import {GoogleLoginButton} from "@/components/googleLogin";
 import {KakaoLoginButton} from "@/components/kakaoLogin";
+import {signInAction} from "@/actions";
 
 export default function LoginPage() {
     return (
         <div>
-        <form action={login}>
+        <form action={signInAction}>
             <label htmlFor="email">Email:</label>
             <input id="email" name="email" type="email" required />
             <label htmlFor="password">Password:</label>
