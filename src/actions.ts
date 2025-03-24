@@ -4,6 +4,7 @@ import {encodedRedirect} from "@/utils/utils";
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import { headers } from "next/headers";
+import {createClassifications} from "@/components/createClassifications";
 
 export const signUpAction = async (formData: FormData) => {
     // 폼 데이터에서 값 추출 (옵셔널 체이닝 사용)
@@ -51,26 +52,9 @@ export const signUpAction = async (formData: FormData) => {
         return encodedRedirect("error", "/sign-up", "User ID not available");
     }
 
-    // 회원가입 성공 후 분류 생성 (예시로 3개의 분류)
-    const classifications = [
-        { uuid: uid, name: "의류" },
-        { uuid: uid, name: "식량" },
-        { uuid: uid, name: "주거" },
-    ];
-
-    for (const classification of classifications) {
-        const response = await fetch(`${origin}/classifications`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(classification),
-        });
-
-        if (!response.ok) {
-            console.error("Failed to create classification:", classification);
-            // 필요에 따라 에러 처리를 추가할 수 있습니다.
-        }
+    // 별도로 분류 생성 로직을 호출 (origin이 문자열인지 확인)
+    if (typeof origin === "string") {
+        await createClassifications(uid, origin);
     }
 
     return encodedRedirect(
