@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import {signOutAction} from "@/actions";
-
+import { signOutAction } from "@/actions";
 
 export default async function Page() {
     const supabase = await createClient();
@@ -8,11 +7,12 @@ export default async function Page() {
         data: { user },
     } = await supabase.auth.getUser();
 
-    // 로그인된 경우: 사용자 이메일을 보여주고 로그아웃 버튼을 표시
     if (user) {
+        // user_metadata에서 display name을 가져옴
+        const displayName = user.user_metadata?.full_name ?? user.email;
         return (
             <>
-                <h1>{user.email}님 환영합니다.</h1>
+                <h1>{displayName}님 환영합니다.</h1>
                 <form action={signOutAction}>
                     <button type="submit">로그아웃</button>
                 </form>
@@ -20,7 +20,6 @@ export default async function Page() {
         );
     }
 
-    // 로그인되지 않은 경우: "OO님 환영합니다."와 로그인 버튼(클릭 시 /login으로 이동)
     return (
         <>
             <h1>OO님 환영합니다.</h1>

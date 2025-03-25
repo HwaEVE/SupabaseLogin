@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {signUpAction} from "@/actions";
+import { signUpAction } from "@/actions";
 
 export default function SignupPage() {
     const [error, setError] = useState('');
@@ -24,6 +24,9 @@ export default function SignupPage() {
         <form action={signUpAction} onSubmit={handleSubmit}>
             <label htmlFor="email">Email:</label>
             <input id="email" name="email" type="email" required />
+
+            <label htmlFor="nickname">Nickname:</label>
+            <input id="nickname" name="nickname" type="text" required />
 
             <label htmlFor="password">Password:</label>
             <input id="password" name="password" type="password" required />

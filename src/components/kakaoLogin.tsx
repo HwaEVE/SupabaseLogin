@@ -8,6 +8,9 @@ const Kakaologin = async () => {
 
     const {} = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
+        options: {
+            redirectTo: `${window.location.origin}/auth/callback`,
+        },
     })
 };
 

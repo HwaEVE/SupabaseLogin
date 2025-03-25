@@ -4,6 +4,7 @@ export async function createClassifications(uid: string, origin: string) {
         { uuid: uid, name: "의류" },
         { uuid: uid, name: "식량" },
         { uuid: uid, name: "주거" },
+        { uuid: uid, name: "기타" },
     ];
 
     for (const classification of classifications) {
@@ -16,7 +17,7 @@ export async function createClassifications(uid: string, origin: string) {
         });
 
         if (!response.ok) {
-            console.error("Failed to create classification:", classification);
+            console.error("계정을 생성하는 것에 실패 했습니다! :", classification);
             // 필요에 따라 에러 처리를 추가할 수 있습니다.
         }
     }

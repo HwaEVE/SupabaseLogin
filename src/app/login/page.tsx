@@ -2,6 +2,7 @@ import { GoogleLoginButton } from "@/components/googleLogin";
 import { KakaoLoginButton } from "@/components/kakaoLogin";
 import { signInAction } from "@/actions";
 import Link from "next/link";
+import {GitHubLoginButton} from "@/components/gitHubLogin";
 
 export default function LoginPage() {
     return (
@@ -23,6 +24,7 @@ export default function LoginPage() {
             <div className="social-login">
                 <GoogleLoginButton />
                 <KakaoLoginButton />
+                <GitHubLoginButton />
             </div>
 
             {/* 회원가입 페이지로 이동 */}
